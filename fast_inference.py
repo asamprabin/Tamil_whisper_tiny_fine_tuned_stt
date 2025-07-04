@@ -2,11 +2,11 @@ from faster_whisper import WhisperModel
 import time
 
 # Explicitly set to GPU if available
-model = WhisperModel("small", compute_type="int8_float16", device="cuda")
+model = WhisperModel("small", compute_type="float16", device="cuda")
 
 # Inference
 start_time = time.time()
-segments, _ = model.transcribe("test.wav")
+segments, _ = model.transcribe("test.wav", beam_size=5, task="transcribe", language="ta")
 end_time = time.time()
 
 # Save results to a file
